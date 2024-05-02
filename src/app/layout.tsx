@@ -1,6 +1,7 @@
 import '@/styles/globals.css'
 import type { Metadata } from 'next'
 import { Rubik } from 'next/font/google'
+import { Header } from '@/components/layout/header'
 import { ThemeProvider } from '@/components/themes/theme-provider'
 
 const font = Rubik({ subsets: ['latin'] })
@@ -25,13 +26,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
-      <link
-        rel='icon'
-        href='/favicon.ico'
-        sizes='any'
-      />
       <body className={font.className}>
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemeProvider
+          attribute='class'
+          defaultTheme='system'
+          disableTransitionOnChange
+        >
+          <Header />
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   )
