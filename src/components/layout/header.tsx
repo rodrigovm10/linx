@@ -25,12 +25,14 @@ export function Header() {
           </Link>
         </section>
         <section className='flex items-center gap-x-2'>
-          <Button
-            variant='ghost'
-            size='icon'
-          >
-            <GitHubIcon className='size-5' />
-          </Button>
+          <Link href='https://github.com/rodrigovm10/linx'>
+            <Button
+              variant='ghost'
+              size='icon'
+            >
+              <GitHubIcon className='size-5' />
+            </Button>
+          </Link>
           <ThemeToggle />
           <Started />
         </section>
