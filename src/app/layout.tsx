@@ -2,6 +2,7 @@ import '@/styles/globals.css'
 import type { Metadata } from 'next'
 import { Rubik } from 'next/font/google'
 import { Header } from '@/components/layout/header'
+import { Footer } from '@/components/layout/footer'
 import { ThemeProvider } from '@/components/themes/theme-provider'
 
 const font = Rubik({ subsets: ['latin'] })
@@ -34,6 +35,7 @@ export default function RootLayout({
         >
           <Header />
           {children}
+          <Footer />
         </ThemeProvider>
       </body>
     </html>
