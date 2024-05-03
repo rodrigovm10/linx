@@ -10,13 +10,14 @@ export const {
   signOut
 } = NextAuth({
   pages: {
-    signIn: '/auth/login'
+    signIn: '/login'
   },
   callbacks: {
     async signIn({ user, account }) {
-      if (account === null) return
       // Allow OAuth without email verification
-      if (account.provider !== 'credentials') return true
+      if (account?.provider !== 'credentials') return true
+
+      return false
     }
   },
   adapter: PrismaAdapter(prisma),

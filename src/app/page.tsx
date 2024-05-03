@@ -1,7 +1,6 @@
-import Link from 'next/link'
-
-import { GitHubIcon } from '@/components/icons/github'
 import { Button } from '@/components/ui/button'
+import { GitHubIcon } from '@/components/icons/github'
+import { ExternalLink } from '@/components/common/external-link'
 
 export default function Home() {
   return (
@@ -16,15 +15,12 @@ export default function Home() {
       </span>
       <div className='flex gap-x-3'>
         <Button>Get started</Button>
-        <Link
-          href='https://github.com/rodrigovm10/linx'
-          target='_blank'
-        >
+        <ExternalLink href='https://github.com/rodrigovm10/linx'>
           <Button variant='outline'>
             <GitHubIcon className='size-4 mr-2' />
             Star on github
           </Button>
-        </Link>
+        </ExternalLink>
       </div>
     </main>
   )

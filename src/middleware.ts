@@ -3,9 +3,9 @@ import authConfig from '@/auth.config'
 import NextAuth from 'next-auth'
 import { NextResponse } from 'next/server'
 
-export const { auth: middleware } = NextAuth(authConfig)
+export const { auth } = NextAuth(authConfig)
 
-export default middleware(async req => {
+export default auth(async req => {
   const { nextUrl } = req
 
   const isLoggedIn = !!req.auth
@@ -26,6 +26,8 @@ export default middleware(async req => {
   }
 
   // Is not logged and is protectedRoute, redirect to /login
+  console.log({ isProtectedRoute })
+  console.log({ isLoggedIn })
   if (!isLoggedIn && isProtectedRoute) {
     let callbackUrl = nextUrl.pathname
     if (nextUrl.search) {
@@ -39,5 +41,5 @@ export default middleware(async req => {
 })
 
 export const config = {
-  matcher: ['/((?!api|_next/static|_next/image|.*\\.png$).*)']
+  matcher: ['/((?!.+\\.[\\w]+$|_next).*)', '/', '/(api|trpc)(.*)']
 }

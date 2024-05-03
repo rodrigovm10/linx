@@ -1,23 +1,22 @@
-'use client'
-
-import Image from 'next/image'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+import { auth } from '@/auth'
+import { cn } from '@/lib/utils'
 
 import { Button } from '@/components/ui/button'
 import { Started } from '@/components/header/started'
 import { GitHubIcon } from '@/components/icons/github'
+import { IconLinx } from '@/components/icons/icon-linx'
+import { UserButton } from '@/components/auth/user-button'
 import { ThemeToggle } from '@/components/themes/theme-toggle'
-import icon from '../../../public/assets/icon.png'
-import { cn } from '@/lib/utils'
+import { ExternalLink } from '@/components/common/external-link'
 
-export function Header() {
-  const pathname = usePathname()
+export async function Header() {
+  const session = await auth()
 
   return (
     <header
       className={cn(
-        pathname === '/' ? 'border border-b-2' : 'border-none     ',
+        !session?.user ? 'border border-b-2' : 'border-none',
         'pb-2 py-4 px-4 md:px-12'
       )}
     >
@@ -27,26 +26,21 @@ export function Header() {
             href='/'
             className='flex gap-x-4'
           >
-            <Image
-              src={icon.src}
-              alt='Linx icon'
-              width={28}
-              height={28}
-            />
+            <IconLinx />
             <span className='self-center text-[18px] font-semibold '>linx</span>
           </Link>
         </section>
         <section className='flex items-center gap-x-2'>
-          <Link href='https://github.com/rodrigovm10/linx'>
+          <ExternalLink href='https://github.com/rodrigovm10/linx'>
             <Button
               variant='ghost'
               size='icon'
             >
               <GitHubIcon className='size-5' />
             </Button>
-          </Link>
+          </ExternalLink>
           <ThemeToggle />
-          <Started />
+          {session?.user ? <UserButton /> : <Started />}
         </section>
       </nav>
     </header>

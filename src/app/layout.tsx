@@ -1,10 +1,10 @@
 import '@/styles/globals.css'
 import type { Metadata } from 'next'
 import { Rubik } from 'next/font/google'
+import { Toaster } from 'sonner'
 import { Header } from '@/components/layout/header'
 import { Footer } from '@/components/layout/footer'
 import { ThemeProvider } from '@/components/themes/theme-provider'
-
 const font = Rubik({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
@@ -36,6 +36,7 @@ export default function RootLayout({
           <Header />
           {children}
           <Footer />
+          <Toaster />
         </ThemeProvider>
       </body>
     </html>
