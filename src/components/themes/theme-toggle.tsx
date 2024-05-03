@@ -32,19 +32,31 @@ export function ThemeToggle() {
       <DropdownMenuContent align='end'>
         <DropdownMenuLabel>Theme</DropdownMenuLabel>
         <DropdownMenuSeparator />
-        <DropdownMenuItem onClick={() => setTheme('light')}>
+        <DropdownMenuItem
+          onClick={() => {
+            setTheme('light')
+          }}
+        >
           <div className='flex gap-x-3'>
             <Sun className='size-5' />
             Light
           </div>
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme('dark')}>
+        <DropdownMenuItem
+          onClick={() => {
+            setTheme('dark')
+          }}
+        >
           <div className='flex gap-x-3'>
             <Moon className='size-5' />
             Dark
           </div>
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme('system')}>
+        <DropdownMenuItem
+          onClick={() => {
+            setTheme('system')
+          }}
+        >
           <div className='flex gap-x-3'>
             <Monitor className='size-5' />
             System
