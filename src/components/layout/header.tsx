@@ -1,15 +1,27 @@
+'use client'
+
 import Image from 'next/image'
-import icon from '../../../public/assets/icon.png'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+
 import { Button } from '@/components/ui/button'
 import { Started } from '@/components/header/started'
 import { GitHubIcon } from '@/components/icons/github'
 import { ThemeToggle } from '@/components/themes/theme-toggle'
+import icon from '../../../public/assets/icon.png'
+import { cn } from '@/lib/utils'
 
 export function Header() {
+  const pathname = usePathname()
+
   return (
-    <header className='border-b-2 pb-2 py-4 px-4 md:px-6'>
-      <nav className='flex  justify-between items-center'>
+    <header
+      className={cn(
+        pathname === '/' ? 'border border-b-2' : 'border-none     ',
+        'pb-2 py-4 px-4 md:px-12'
+      )}
+    >
+      <nav className='flex justify-between items-center'>
         <section className='hover:opacity-100 opacity-80 transition-all'>
           <Link
             href='/'
