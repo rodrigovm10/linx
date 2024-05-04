@@ -26,8 +26,6 @@ export default auth(async req => {
   }
 
   // Is not logged and is protectedRoute, redirect to /login
-  console.log({ isProtectedRoute })
-  console.log({ isLoggedIn })
   if (!isLoggedIn && isProtectedRoute) {
     let callbackUrl = nextUrl.pathname
     if (nextUrl.search) {

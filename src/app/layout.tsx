@@ -34,7 +34,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Header />
-          {children}
+          <main className='container my-[68px] flex w-full items-center'>{children}</main>
           <Footer />
           <Toaster />
         </ThemeProvider>
