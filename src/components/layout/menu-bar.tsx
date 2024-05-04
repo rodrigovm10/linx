@@ -9,8 +9,6 @@ import { Link as IconLink, Settings } from 'lucide-react'
 export function MenuBar() {
   const pathname = usePathname()
 
-  if (pathname === '/') return
-
   return (
     <nav className='fixed z-50 flex w-full items-center border-b border-neutral-200 shadow-sm backdrop-blur-md dark:border-neutral-800 '>
       <div className='container mx-auto w-full'>

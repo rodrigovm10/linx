@@ -6,7 +6,7 @@ import { Search, Plus } from 'lucide-react'
 
 export default async function DashboardPage() {
   return (
-    <section className='w-full '>
+    <section className='w-full'>
       <section className='mb-3 flex w-full items-center space-x-2 justify-between'>
         <div className='relative'>
           <Search className='absolute left-2 top-1/2 -translate-y-1/2 size-4 text-muted-foreground' />

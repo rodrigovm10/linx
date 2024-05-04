@@ -9,7 +9,6 @@ import { IconLinx } from '@/components/icons/icon-linx'
 import { UserButton } from '@/components/auth/user-button'
 import { ThemeToggle } from '@/components/themes/theme-toggle'
 import { ExternalLink } from '@/components/common/external-link'
-import { MenuBar } from './menu-bar'
 
 export async function Header() {
   const session = await auth()
@@ -46,7 +45,6 @@ export async function Header() {
           </section>
         </nav>
       </header>
-      <MenuBar />
     </>
   )
 }
