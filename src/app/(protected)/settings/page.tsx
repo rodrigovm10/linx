@@ -1,16 +1,10 @@
 import { auth } from '@/auth'
+
 import { Button } from '@/components/ui/button'
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle
-} from '@/components/ui/card'
-import { Input } from '@/components/ui/input'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Label } from '@/components/ui/label'
-import { TriangleAlert, Save, Download, HeartCrack } from 'lucide-react'
+import { Download, HeartCrack } from 'lucide-react'
+import { GeneralCard } from '@/components/settings/general-card'
 
 export default async function SettingsPage() {
   const session = await auth()
@@ -18,37 +12,7 @@ export default async function SettingsPage() {
   return (
     <div className='w-full flex flex-col gap-y-4'>
       <section>
-        <Card className='p-0'>
-          <CardHeader className='p-4'>
-            <CardTitle className='font-normal'>General</CardTitle>
-            <CardDescription>Update your personal information:</CardDescription>
-          </CardHeader>
-          <CardContent className='p-4 space-y-4'>
-            <div className='space-y-2'>
-              <Label>Your name:</Label>
-              <Input defaultValue={session?.user?.name ?? ''} />
-            </div>
-            <div className='space-y-2'>
-              <Label>Your email:</Label>
-              <Input
-                defaultValue={session?.user?.email ?? ''}
-                disabled
-              />
-              <div className='flex gap-x-2 items-center w-full'>
-                <TriangleAlert className='text-muted-foreground size-4' />
-                <span className=' text-xs text-muted-foreground '>
-                  Email address is managed by OAuth provider.
-                </span>
-              </div>
-            </div>
-          </CardContent>
-          <CardFooter className='justify-end'>
-            <Button className='flex gap-x-2 items-center'>
-              <Save className='size-4' />
-              Save
-            </Button>
-          </CardFooter>
-        </Card>
+        <GeneralCard session={session} />
       </section>
       <section>
         <Card className='p-0'>
@@ -69,7 +33,7 @@ export default async function SettingsPage() {
             </div>
             <div className='flex flex-col gap-y-2'>
               <Label>Delete Account</Label>
-              <Button className='w-[250px] flex gap-x-2'>
+              <Button className='w-[250px] flex gap-x-2 bg-destructive hover:bg-destructive/80 dark:text-white'>
                 <HeartCrack className='size-4' />
                 Delete Account
               </Button>

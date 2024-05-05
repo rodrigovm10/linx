@@ -17,15 +17,27 @@ model User {
   id            String          @id @default(cuid())
   username      String?
   name          String?
-  email         String?          @unique
+  email         String?         @unique
   emailVerified DateTime?
   image         String?
   accounts      Account[]
- 
+  links         Links[]
+  limitLinks    Int             @default(30)
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
- 
+
+model Links {
+  id            String          @id @default(cuid())
+  url           String
+  shortLink     String
+  createAt      DateTime        @default(now())
+  createdBy     User?           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId        String
+  clicks        Int             @default(0)
+
+} 
 model Account {
   userId            String
   type              String

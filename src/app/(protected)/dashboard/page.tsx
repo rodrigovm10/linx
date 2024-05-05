@@ -1,8 +1,10 @@
-import { TooltipWrapper } from '@/components/common/tooltip-wrapper'
-import { Button, buttonVariants } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
 import { cn } from '@/lib/utils'
-import { Search, Plus } from 'lucide-react'
+
+import { Search } from 'lucide-react'
+import { Input } from '@/components/ui/input'
+import { buttonVariants } from '@/components/ui/button'
+import { CreateLink } from '@/components/dashboard/create-link'
+import { TooltipWrapper } from '@/components/common/tooltip-wrapper'
 
 export default async function DashboardPage() {
   return (
@@ -26,9 +28,7 @@ export default async function DashboardPage() {
               00/30
             </span>
           </TooltipWrapper>
-          <Button>
-            <Plus /> <span>Create link</span>
-          </Button>
+          <CreateLink />
         </div>
       </section>
     </section>

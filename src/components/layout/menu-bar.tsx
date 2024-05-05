@@ -10,7 +10,7 @@ export function MenuBar() {
   const pathname = usePathname()
 
   return (
-    <nav className='fixed z-50 flex w-full items-center border-b border-neutral-200 shadow-sm backdrop-blur-md dark:border-neutral-800 '>
+    <nav className='fixed z-50 flex w-full items-center bg-background border-b border-neutral-200 backdrop-blur-md dark:border-neutral-800'>
       <div className='container mx-auto w-full'>
         <section className='flex w-full items-center mt-0 space-x-0 text-sm font-medium rtl:space-x-reverse'>
           <div className='flex items-center gap-x-8'>
