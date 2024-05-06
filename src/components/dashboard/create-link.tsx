@@ -1,13 +1,6 @@
 'use client'
-
-import { type z } from 'zod'
-import { toast } from 'sonner'
-import { useState } from 'react'
-import { useForm } from 'react-hook-form'
 import { generateRandomLink } from '@/lib/utils'
-import { createLink } from '@/server/actions/links'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { createLinkSchema } from '@/server/schemas/create-link'
+import { useCreateLink } from '@/hooks/useCreateLink'
 
 import {
   Form,
@@ -18,77 +11,40 @@ import {
   FormMessage
 } from '@/components/ui/form'
 import {
-  AlertDialog,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger
-} from '@/components/ui/alert-dialog'
-import { Plus } from 'lucide-react'
-import { Button } from '@/components/ui/button'
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+  DialogClose,
+  DialogFooter
+} from '@/components/ui/dialog'
 import { Input } from '@/components/ui/input'
+import { Button } from '@/components/ui/button'
+import { Loader, Plus, Link } from 'lucide-react'
 
 export function CreateLink() {
-  const [loading, setLoading] = useState(false)
-  const [open, setOpen] = useState(false)
-  const form = useForm<z.infer<typeof createLinkSchema>>({
-    resolver: zodResolver(createLinkSchema),
-    defaultValues: {
-      link: '',
-      shortLink: ''
-    }
-  })
+  const { isLoading, open, form, setOpen, onSubmit } = useCreateLink()
 
-  const onSubmit = async (values: z.infer<typeof createLinkSchema>) => {
-    if (values.shortLink === values.link) {
-      setLoading(false)
-      return
-    }
-
-    try {
-      setLoading(true)
-      const result = await createLink(values)
-      const { error, limit } = result
-
-      if (error && limit) {
-        toast.error(error)
-      }
-
-      toast.success('Link created successfully', {
-        description: `Url: https://${process.env.NEXT_URL_DEV}/${values.shortLink}`,
-        duration: 10000,
-        closeButton: true
-      })
-
-      form.reset()
-      setOpen(false)
-    } catch (err) {
-      toast.error('An unexpected error has ocurred. Please try again.')
-    } finally {
-      setLoading(false)
-    }
-  }
   return (
-    <AlertDialog
+    <Dialog
       open={open}
       onOpenChange={setOpen}
     >
-      <AlertDialogTrigger>
+      <DialogTrigger asChild>
         <Button>
-          <Plus /> <span>Create link</span>
+          <Plus className='size-4' /> <span>Create link</span>
         </Button>
-      </AlertDialogTrigger>
-      <AlertDialogContent>
-        <AlertDialogHeader>
-          <AlertDialogTitle>Create a new link</AlertDialogTitle>
-          <AlertDialogDescription>
+      </DialogTrigger>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>Create a new link</DialogTitle>
+          <DialogDescription>
             This action cannot be undone. This will permanently delete your account and remove your
             data from our servers.
-          </AlertDialogDescription>
-        </AlertDialogHeader>
+          </DialogDescription>
+        </DialogHeader>
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
@@ -102,7 +58,7 @@ export function CreateLink() {
                   <FormLabel>Link</FormLabel>
                   <FormControl>
                     <Input
-                      disabled={loading}
+                      disabled={isLoading}
                       placeholder='https://'
                       {...field}
                     />
@@ -120,7 +76,7 @@ export function CreateLink() {
                   <FormControl>
                     <div className='flex gap-x-4'>
                       <Input
-                        disabled={loading}
+                        disabled={isLoading}
                         placeholder='myShortLink'
                         {...field}
                       />
@@ -137,13 +93,25 @@ export function CreateLink() {
                 </FormItem>
               )}
             />
-            <AlertDialogFooter>
-              <AlertDialogCancel>Cancel</AlertDialogCancel>
-              <Button type='submit'>Create Link</Button>
-            </AlertDialogFooter>
+            <DialogFooter>
+              <DialogClose>
+                <Button
+                  disabled={isLoading}
+                  variant={'ghost'}
+                  type='button'
+                >
+                  Cancel
+                </Button>
+              </DialogClose>
+              <Button type='submit'>
+                {isLoading && <Loader className='size-4 animate-spin mr-2' />}
+                {!isLoading && <Link className='size-4 mr-2 ' />}
+                Create Link
+              </Button>
+            </DialogFooter>
           </form>
         </Form>
-      </AlertDialogContent>
-    </AlertDialog>
+      </DialogContent>
+    </Dialog>
   )
 }

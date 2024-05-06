@@ -1,4 +1,6 @@
+import { auth } from '@/auth'
 import { cn } from '@/lib/utils'
+import { getAllLinks } from '@/server/data/links'
 
 import { Search } from 'lucide-react'
 import { Input } from '@/components/ui/input'
@@ -6,7 +8,12 @@ import { buttonVariants } from '@/components/ui/button'
 import { CreateLink } from '@/components/dashboard/create-link'
 import { TooltipWrapper } from '@/components/common/tooltip-wrapper'
 
+import { CardLink } from '@/components/dashboard/card-link'
+
 export default async function DashboardPage() {
+  const user = await auth()
+  const links = await getAllLinks({ id: user?.user.id })
+
   return (
     <section className='w-full'>
       <section className='mb-3 flex w-full items-center space-x-2 justify-between'>
@@ -30,6 +37,14 @@ export default async function DashboardPage() {
           </TooltipWrapper>
           <CreateLink />
         </div>
+      </section>
+      <section className='grid gap-3 lg:grid-cols-2'>
+        {links?.links?.map(link => (
+          <CardLink
+            link={link}
+            key={link.id}
+          />
+        ))}
       </section>
     </section>
   )
