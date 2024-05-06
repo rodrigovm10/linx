@@ -1,5 +1,6 @@
 import { type Links } from '@prisma/client'
-import { Copy, BarChart, Trash } from 'lucide-react'
+import { BarChart, Trash } from 'lucide-react'
+import { CopyToClipboard } from '@/components/links/copy-to-clipboard'
 import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 
 export function CardLink({ link }: { link: Links }) {
@@ -13,9 +14,7 @@ export function CardLink({ link }: { link: Links }) {
               <BarChart className='size-4' />
               {link.clicks} clicks
             </p>
-            <button>
-              <Copy className='size-4 hover:opacity-70' />
-            </button>
+            <CopyToClipboard link={link} />
             <button>
               <Trash className='size-4 hover:opacity-70' />
             </button>
