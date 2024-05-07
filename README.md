@@ -1,4 +1,4 @@
-# weathr app
+# Linx
 ![image](https://github.com/rodrigovm10/linx/assets/104101668/88070138-057e-4757-9b68-122ed862b2e9)
 <p align="center">A URL short administrator.</p>
 
