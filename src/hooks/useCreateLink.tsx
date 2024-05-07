@@ -35,7 +35,7 @@ export function useCreateLink() {
       }
 
       toast.success('Link created successfully', {
-        description: `Url: https://${process.env.NEXT_URL_DEV}/${values.shortLink}`,
+        description: `Url: https://${process.env.NEXT_URL}/${values.shortLink}`,
         duration: 10000,
         closeButton: true
       })
