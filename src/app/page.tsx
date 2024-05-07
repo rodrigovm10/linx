@@ -1,6 +1,9 @@
-import { Button } from '@/components/ui/button'
+import Link from 'next/link'
+
 import { GitHubIcon } from '@/components/icons/github'
 import { ExternalLink } from '@/components/common/external-link'
+import { Button, buttonVariants } from '@/components/ui/button'
+import { Link as IconLink } from 'lucide-react'
 
 export default function Home() {
   return (
@@ -14,7 +17,13 @@ export default function Home() {
         With Linx, you can customize shortened links, track click statistics.
       </span>
       <div className='flex gap-x-3'>
-        <Button>Get started</Button>
+        <Link
+          href='/dashboard'
+          className={buttonVariants({ variant: 'default' })}
+        >
+          <IconLink className='size-4 mr-2' />
+          Create a link
+        </Link>
         <ExternalLink href='https://github.com/rodrigovm10/linx'>
           <Button variant='outline'>
             <GitHubIcon className='size-4 mr-2' />
