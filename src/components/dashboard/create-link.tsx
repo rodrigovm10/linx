@@ -1,4 +1,5 @@
 'use client'
+
 import { generateRandomLink } from '@/lib/utils'
 import { useCreateLink } from '@/hooks/useCreateLink'
 
