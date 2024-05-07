@@ -1,9 +1,14 @@
+import { auth } from '@/auth'
+
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { Download } from 'lucide-react'
 import { Label } from '@/components/ui/label'
-import { Download, HeartCrack } from 'lucide-react'
+import { DeleteAccount } from '@/components/settings/delete-account'
 
-export function AccountCard() {
+export async function AccountCard() {
+  const session = await auth()
+
   return (
     <Card className='p-0'>
       <CardHeader className='p-4'>
@@ -23,10 +28,7 @@ export function AccountCard() {
         </div>
         <div className='flex flex-col gap-y-2'>
           <Label>Delete Account</Label>
-          <Button className='w-[250px] flex gap-x-2 bg-destructive hover:bg-destructive/80 dark:text-white'>
-            <HeartCrack className='size-4' />
-            Delete Account
-          </Button>
+          <DeleteAccount session={session} />
         </div>
       </CardContent>
     </Card>
