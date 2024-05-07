@@ -6,7 +6,7 @@ import { toast } from 'sonner'
 import { Copy } from 'lucide-react'
 
 export function CopyToClipboard({ link }: { link: Links }) {
-  const URL = 'http://localhost:3000/'
+  const URL = `${process.env.NEXT_URL}`
   const handleCopyToClipboard = () => {
     if (!navigator.clipboard) {
       return { error: 'Clipboard is not supported' }
