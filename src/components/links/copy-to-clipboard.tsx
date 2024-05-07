@@ -6,7 +6,6 @@ import { toast } from 'sonner'
 import { Copy } from 'lucide-react'
 
 export function CopyToClipboard({ link }: { link: Links }) {
-  const URL = `${process.env.NEXT_URL}`
   const handleCopyToClipboard = () => {
     if (!navigator.clipboard) {
       return { error: 'Clipboard is not supported' }
@@ -14,9 +13,9 @@ export function CopyToClipboard({ link }: { link: Links }) {
 
     try {
       toast.success('Link copy to clipboard!', {
-        description: `${URL}${link.shortLink}`
+        description: `https://linx-lac-six.vercel.app/${link.shortLink}`
       })
-      navigator.clipboard.writeText(`${URL}${link.shortLink}`)
+      navigator.clipboard.writeText(`https://linx-lac-six.vercel.app/${link.shortLink}`)
     } catch (err) {
       toast.success('Failed to copy')
     }
