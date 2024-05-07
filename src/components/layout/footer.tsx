@@ -7,6 +7,7 @@ export function Footer() {
           className='underline'
           href='http://github.com/rodrigovm10'
           target='_blank'
+          rel='noreferrer'
         >
           @rodrigovm10
         </a>
