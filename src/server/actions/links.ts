@@ -19,7 +19,6 @@ export const createLink = async (values: z.infer<typeof createLinkSchema>) => {
     }
   })
 
-  console.log(countLinks)
   const limitLinks = currentUser.user.limitLinks
 
   if (countLinks >= limitLinks) {
@@ -41,4 +40,27 @@ export const createLink = async (values: z.infer<typeof createLinkSchema>) => {
   revalidatePath('/dashboard')
 
   return { limit: false, linkId: newLink.id }
+}
+
+export const deleteLink = async (linkId: string) => {
+  const currentUser = await auth()
+
+  if (!currentUser) {
+    return { error: 'Not authenticated. Please log in first.' }
+  }
+
+  const result = await db.links.delete({
+    where: {
+      id: linkId
+    }
+  })
+
+  if (!result) {
+    return { error: 'Link not deleted. Please try again.' }
+  }
+
+  revalidatePath('/')
+  revalidatePath('/dashboard')
+
+  return { shortLink: result.shortLink }
 }
