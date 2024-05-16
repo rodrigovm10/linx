@@ -1,10 +1,11 @@
 'use server'
 
+import { revalidatePath } from 'next/cache'
+
 import type z from 'zod'
 import { auth } from '@/auth'
 import { db } from '@/server/db/db'
 import { type createLinkSchema } from '@/server/schemas/create-link'
-import { revalidatePath } from 'next/cache'
 
 export const createLink = async (values: z.infer<typeof createLinkSchema>) => {
   const currentUser = await auth()

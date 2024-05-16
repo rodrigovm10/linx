@@ -2,7 +2,7 @@
 
 import { toast } from 'sonner'
 import { useState } from 'react'
-import { type Links } from '@prisma/client'
+import { type Links } from '@/types/link.type'
 
 import { deleteLink } from '@/server/actions/links'
 

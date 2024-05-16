@@ -1,6 +1,6 @@
 import { db } from '@/server/db/db'
 import { auth } from '@/auth'
-import { type Links } from '@prisma/client'
+import { type Links } from '@/types/link.type'
 
 /**
  * Get all the links by the user id.
@@ -12,6 +12,7 @@ interface GetAllLinksReturnProps {
   links?: Links[]
   error?: string
 }
+
 export const getAllLinks = async ({
   id
 }: {
@@ -20,7 +21,7 @@ export const getAllLinks = async ({
   const currentUser = await auth()
 
   if (!currentUser) {
-    return null
+    return { error: 'The user is not authenticated' }
   }
 
   try {

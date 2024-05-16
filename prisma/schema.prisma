@@ -31,12 +31,11 @@ model User {
 model Links {
   id            String          @id @default(cuid())
   url           String
-  shortLink     String
+  shortLink     String          @unique
   createAt      DateTime        @default(now())
   createdBy     User?           @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId        String
   clicks        Int             @default(0)
-
 } 
 model Account {
   userId            String

@@ -1,4 +1,4 @@
-import { type Links } from '@prisma/client'
+import { type Links } from '@/types/link.type'
 
 import { BarChart } from 'lucide-react'
 import { DeleteLink } from '@/components/links/delete-link'

@@ -1,3 +1,4 @@
+import { increaseClicksStats } from '@/server/actions/links'
 import { db } from '@/server/db/db'
 import { redirect } from 'next/navigation'
 
@@ -9,9 +10,8 @@ export default async function PageShortLink({ params }: { params: { shortLink: s
     }
   })
 
-  if (!data) {
-    return redirect('/')
+  if (data) {
+    await increaseClicksStats({ shortLink })
+    return redirect(data.url.toString())
   }
-
-  redirect(data.url.toString())
 }

@@ -1,7 +1,7 @@
 'use client'
 
 import QRCode from 'react-qr-code'
-import { type Links } from '@prisma/client'
+import { type Links } from '@/types/link.type'
 
 import { toast } from 'sonner'
 import { Copy } from 'lucide-react'

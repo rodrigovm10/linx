@@ -1,7 +1,7 @@
 'use client'
 
 import { cn } from '@/lib/utils'
-import { type Links } from '@prisma/client'
+import { type Links } from '@/types/link.type'
 
 import {
   Dialog,
