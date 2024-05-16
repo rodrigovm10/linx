@@ -1,11 +1,12 @@
 'use client'
 
-import { toast } from 'sonner'
-import { useState } from 'react'
 import { cn } from '@/lib/utils'
 import { type Session } from 'next-auth'
 import { deleteAccount } from '@/server/actions/user'
+import { handleSignOut } from '@/server/actions/sign-out'
 
+import { toast } from 'sonner'
+import { useState } from 'react'
 import {
   Dialog,
   DialogClose,
@@ -19,7 +20,6 @@ import {
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { HeartCrack, Loader } from 'lucide-react'
-import { handleSignOut } from '@/server/actions/sign-out'
 
 export function DeleteAccount({ session }: { session?: Session | null }) {
   const [open, setOpen] = useState(false)

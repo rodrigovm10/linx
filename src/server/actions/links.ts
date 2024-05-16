@@ -64,3 +64,29 @@ export const deleteLink = async (linkId: string) => {
 
   return { shortLink: result.shortLink }
 }
+
+export const downloadLinks = async () => {
+  const currentUser = await auth()
+
+  if (!currentUser) {
+    return { error: 'Not authenticated. Please log in first.' }
+  }
+
+  const links = await db.links.findMany({
+    where: {
+      userId: currentUser.user.id
+    }
+  })
+
+  return links.map(link => {
+    const { url, shortLink, createAt } = link
+    const linkShortened = `https://linx-lac-six.vercel.app/${shortLink}`
+
+    return { url, shortLink, createAt, linkShortened } satisfies {
+      url: string
+      shortLink: string
+      linkShortened: string
+      createAt: Date
+    }
+  })
+}

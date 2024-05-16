@@ -1,10 +1,9 @@
 import { auth } from '@/auth'
 
-import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Download } from 'lucide-react'
-import { Label } from '@/components/ui/label'
+import { ExportLinks } from '@/components/settings/export-links'
 import { DeleteAccount } from '@/components/settings/delete-account'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { Label } from '@/components/ui/label'
 
 export async function AccountCard() {
   const session = await auth()
@@ -18,13 +17,7 @@ export async function AccountCard() {
       <CardContent className='p-4 space-y-6'>
         <div className='flex flex-col gap-y-2'>
           <Label>Export links</Label>
-          <Button
-            variant='outline'
-            className='w-[250px] flex gap-x-2 justify-center'
-          >
-            <Download className='size-4' />
-            Export links
-          </Button>
+          <ExportLinks />
         </div>
         <div className='flex flex-col gap-y-2'>
           <Label>Delete Account</Label>
