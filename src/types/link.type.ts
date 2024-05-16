@@ -3,6 +3,6 @@ export interface Links {
   url: string
   shortLink: string
   createAt: Date
-  creatorId: string
+  creatorId?: string
   clicks: number
 }
